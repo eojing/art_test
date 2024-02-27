@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="css/style copy.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        img{width: 100%;}
+        .tag{
+            background: #FDF6D9;
+            padding: 1.1111vw 4.4444vw;
+            border-radius: 27.5000vw;
+            display: inline-block;
+            margin-bottom: 2.7778vw;
+            font-size: 4.7222vw;
+
+        }
+        .content_area{
+            padding: 0 5.5556vw;
+            margin-bottom: 8.3333vw;
+            font-size: 4.4444vw;
+        }
+        .gray{
+            color: #999;
+            font-size: 3.6111vw;
+        }
+        .box{
+            border-radius: 3.3333vw;
+            background: #eee;
+            padding: 4.4444vw 11.1111vw;
+            position: relative;
+            display: flex;
+        }
+        
+        .box_tag{
+            margin-bottom: 1.1111vw;
+        }
+
+        .triangle{
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            border-top: 13.3333vw solid transparent;
+            border-left: 5vw solid #F5F5F5;
+            border-bottom: 13.3333vw solid transparent;
+            top: 0;
+            left: 42.7778vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- tab영역 -->
+        <div class="tab_wrap">
+            <div class="fade"></div>
+            <ul class="tab">    
+                <li class="tab_list mw_Title">대회소개</li>
+                <li class="tab_list mw_Title">수상작 갤러리</li>
+                <li class="tab_list mw_Title">자주묻는질문</li>
+            </ul>       
+        </div>
+        <!-- /tab영역 -->
+
+        <!-- content영역 -->
+        <div class="content_wrap">       
+            <div class="content_list show">
+                <div class="visual">
+                    <img src="img/body01.png" alt="">
+                </div>
+                <div class="content_area">
+                    <div class="tag fb">주제</div>
+                    <div class="text_area">내가 모은 용돈으로 햇던 뿌듯한 일 또는 용돈을 모아 이루고 싶은 꿈을 그려주세요!</div>
+                    <div class="gray">※ 8절지, 그림도구 자유</div>
+                </div>
+                <div class="content_area">
+                    <div class="tag fb">참가 대상</div>
+                    <div class="text_area">당사 미성년 자녀 계좌 보유 고객 누구나</div>
+                    <div class="gray">※ 대회부문 : 유치부, 초등 저학년, 초등 고학년</div>
+                </div>
+                <div class="content_area">
+                    <div class="tag fb">대회 일정</div>
+                    <div class="box">
+                        <div class="left">
+                            <div class="triangle"></div>
+                            <div class="box_tag">작품 접수</div>
+                            <div class="box_text">24.04.05(금) ~<br>
+                                24.05.05(일) </div>
+                        </div>
+                        <div class="right">
+                            <div class="box_tag">작품 접수</div>
+                            <div class="box_text">24.04.05(금) ~<br>
+                                24.05.05(일) </div>
+                        </div>
+                    </div>
+                    <div class="gray">※ 대회부문 : 유치부, 초등 저학년, 초등 고학년</div>
+                </div>
+                <div class="text_box"></div>
+
+            </div>
+            <div class="content_list show">수상작 갤러리</div>
+            <div class="content_list show">자주묻는질문
+                <div class="accordion">
+
+                </div>
+
+            </div>
+        </div>         
+        <!-- /content영역 -->
+
+        <!-- 하단 버튼 -->
+        <!-- <a href="#" class="bottom_btn mw_title">버튼명</a> -->
+        <!-- /하단 버튼 -->
+    </div>
+
+    
+        <script>
+            
+            const tab = document.querySelector('.tab');
+            const tab_list = document.querySelectorAll('.tab_list');
+            const tab_wrap = document.querySelector('.tab_wrap');
+            const content = document.querySelector('.content_wrap');
+            const content_list = document.querySelectorAll('.content_list');
+
+
+
+            for(let i = 0; i< tab_list.length; i++){
+
+                const contentScrollTop = content_list[i].offsetTop - tab_wrap.offsetHeight;
+
+                tab_list[i].addEventListener('click',function(){
+                    window.scrollTo({top:contentScrollTop, behavior: 'smooth'});  
+                });
+            }
+
+            window.addEventListener('scroll', function(){
+                    if( window.scrollY >= content_list[0].offsetTop - tab.offsetHeight){
+                        tab_list[1].classList.remove('on');
+                        tab_list[2].classList.remove('on');
+                        tab_list[0].classList.add('on');
+                    } 
+                    if(window.scrollY >= content_list[1].offsetTop - tab.offsetHeight){
+                        tab_list[0].classList.remove('on');
+                        tab_list[2].classList.remove('on');
+                        tab_list[1].classList.add('on');
+                    }
+                    if(window.scrollY >= content_list[2].offsetTop - tab.offsetHeight){
+                        tab_list[0].classList.remove('on');
+                        tab_list[1].classList.remove('on');
+                        tab_list[2].classList.add('on');
+                    }
+                });
+
+
+
+                var acc = document.getElementsByClassName("accordion-btn");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("accordion-active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+                }
+
+
+            // 탭 
+            
+            // for(let i = 0; i < tab_list.length; i++){
+
+            //     tab_list[i].addEventListener('click',tabClick);
+
+            //     function tabClick(){
+            //         document.querySelector('.on').classList.remove('on');
+            //         tab_list[i].classList.add('on');
+            //         document.querySelector('.show').classList.remove('show');
+            //         content_list[i].classList.add('show');
+            //     }
+            // }
+
+            // if(tab_list.length == 2){
+            //     for(let i = 0; i < 2; i++){
+            //         tab_list[i].style.width = 50 + '%';
+            //     }
+            // }
+
+
+            // 탭 스와이프
+
+            // if(tab.classList.contains('tab_swipe')){
+            //     let idx = 0;
+            //     let left = 0;
+
+            //     const tab_list_width = 33.3333;
+            //     tab_wrap.style.maxWidth = 100 + 'vw';
+            //     tab_wrap.style.width = 100 + '%';
+            //     tab_wrap.style.overflowX = 'scroll';
+
+            //     for(let i = 0; i < tab_list.length; i++){
+            //         tab_list[i].style.left = `${tab_list_width * i}vw`
+            //         tab.style.width = `${tab_list_width * (i+1)}vw`
+            //     }
+            // }
+        </script>
+</body>
+</html>
